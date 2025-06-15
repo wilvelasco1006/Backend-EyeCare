@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./database/database");
 const UserDAO = require("./dao/UserDAO");
-
+const QuizDAO = require("./dao/QuizDAO")
 // Connect to database
 connectDB();
 
@@ -31,11 +31,20 @@ app.get("/", (req, res) => {
 const userDAO = new UserDAO();
 
 // Routes for User
-app.get("/api/v1/users/", (req, res) => userDAO.getAll(req, res));
-app.post("/api/v1/users/", (req, res) => userDAO.create(req, res));
-app.get("/api/v1/users/:id", (req, res) => userDAO.getById(req, res));
-app.put("/api/v1/users/:id", (req, res) => userDAO.update(req, res));
-app.delete("/api/v1/users/:id", (req, res) => userDAO.delete(req, res));
+app.get("/api/users/", (req, res) => userDAO.getAll(req, res));
+app.post("/api/users/", (req, res) => userDAO.create(req, res));
+app.get("/api/users/:id", (req, res) => userDAO.getById(req, res));
+app.put("/api/users/:id", (req, res) => userDAO.update(req, res));
+app.delete("/api/users/:id", (req, res) => userDAO.delete(req, res));
+
+// Routes for quiz
+const quizDAO = new QuizDAO();
+
+app.get("/api/quizzes/", (req, res) => quizDAO.getAll(req, res));
+app.post("/api/quizzes/", (req, res) => quizDAO.create(req, res));
+app.put("/api/quizzes/:id", (req, res) => quizDAO.update(req, res));
+
+
 
 // Configure port
 const PORT = process.env.PORT || 3000;
