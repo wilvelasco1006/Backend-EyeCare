@@ -35,7 +35,7 @@ app.get("/api/v1/users/", (req, res) => userDAO.getAll(req, res));
 app.post("/api/v1/users/", (req, res) => userDAO.create(req, res));
 app.get("/api/v1/users/:id", (req, res) => userDAO.getById(req, res));
 app.put("/api/v1/users/:id", (req, res) => userDAO.update(req, res));
-app.delete("/api/v1/users/:id", (req, res) => userDAO.delete(req, res));
+//app.delete("/api/v1/users/:id", (req, res) => userDAO.delete(req, res));
 
 // Configure port
 const PORT = process.env.PORT || 3000;
