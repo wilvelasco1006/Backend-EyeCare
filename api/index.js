@@ -15,9 +15,11 @@ const app = express();
 
 // Middlewares
 app.use(express.json()); // Parse JSON requests
-app.use(cors({           // Enable CORS with configuration
-    origin: true,          // Allow all origins (restrict in production)
-    credentials: true      // Allow credentials (cookies, authorization headers)
+app.use(cors({
+    origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 }));
 
 // Health check endpoint
